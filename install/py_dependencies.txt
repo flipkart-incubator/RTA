@@ -1,0 +1,10 @@
+flask
+pyyaml
+pymongo
+twitter
+argparse
+requests
+dnspython
+requests[socks]
+python-dateutil
+python-Wappalyzer

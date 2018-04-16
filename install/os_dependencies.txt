@@ -1,0 +1,5 @@
+python-pip
+libcurl4-openssl-dev
+libxml2 libxml2-dev
+libxslt1-dev
+build-essential
