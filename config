@@ -1,3 +1,6 @@
+api:
+    token: <Random token for API auth>
+
 slack:
     url: <Slack incoming webhook url>
 
