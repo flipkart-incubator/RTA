@@ -205,7 +205,7 @@ class Scraper():
             self.twitter()
         except Exception as e:
             print("Exception occured: \n" + str(e))
-            print("Have you updated the config file with correct values ?")
+            print("\033[91m" + "Have you updated the config file with correct values ?")
             pass
         self.slack.notify_slack(self.message)
         return

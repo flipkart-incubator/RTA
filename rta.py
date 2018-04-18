@@ -150,7 +150,7 @@ class Recon(object):
         collection.create_index('domain', unique=True)
         count = self.dbname.collection.count()
 
-        print("\n" + self.Y + "[+] Verifying Subdomains and takeover options")
+        print("\n" + self.Y + "[i] Verifying Subdomains and takeover options")
         for url in self.subdomains:
             cname = False
             url = url.strip("\n")
