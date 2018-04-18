@@ -200,7 +200,12 @@ class Scraper():
 
         """
         # self.github()
-        self.shodan(target)
-        self.twitter()
+        try:
+            self.shodan(target)
+            self.twitter()
+        except Exception as e:
+            print("Exception occured: \n" + str(e))
+            print("Have you updated the config file with correct values ?")
+            pass
         self.slack.notify_slack(self.message)
         return

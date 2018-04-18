@@ -34,12 +34,13 @@ class Install():
 
 def main():
     install = Install()
-    
     # linux installation
     if sys.platform == "linux" or sys.platform == "linux2":
-        install.os_dependencies()
+        install.os_dependencies_linux()
     
     install.sublister()
+    print("\033[91m" + "\n\nPlease modify the config file with the required values before running RTA !")
+
     return
 
 
