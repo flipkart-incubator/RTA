@@ -202,10 +202,17 @@ class Scraper():
         # self.github()
         try:
             self.shodan(target)
+        except Exception as e:
+            # print("Exception occured: \n" + str(e))
+            print("\033[91m" + "[+]Skipping Shodan since config file is not updated")
+            pass
+
+        try:
             self.twitter()
         except Exception as e:
-            print("Exception occured: \n" + str(e))
-            print("\033[91m" + "Have you updated the config file with correct values ?")
+            # print("Exception occured: \n" + str(e))
+            print("\033[91m" + "[+]Skipping Twitter since config file is not updated")
             pass
+
         self.slack.notify_slack(self.message)
         return

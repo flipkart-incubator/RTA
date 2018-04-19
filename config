@@ -1,29 +1,25 @@
--api:
--    token: <Random token for API auth>
--
--slack:
--    url: <Slack incoming webhook url>
--
--nessus:
--    url: https://127.0.0.1:8080   #Remote Nessus instance can be used
--    username: <nessus username>
--    password: <nessus password>
--
--scraper:
--
--    github_token: <github token>
--    github_keywords: 
--        - <company_name hacked>
--        - <keywords to search for in github>
--        - <you can have multiple keywords>
--
--    shodan_token: <shodan API token>
--
--    twitter_access_token: <twitter access token>
--    twitter_access_token_secret: <twitter access token secret>
--    twitter_consumer_key: <twitter consumer key>
--    twitter_consumer_secret: <twitter consumer secret>
--    
--    twitter_keywords:
--        - <keywords to search in twitter>
--        - <eg: company_name hacked>
+slack:
+    url: <Slack incoming webhook url>
+
+nessus:
+    url: https://127.0.0.1:8080   #Remote Nessus instance can be used
+    username: <nessus username>
+    password: <nessus password>
+
+scraper:
+    github_token: <github token>
+    github_keywords: 
+        - <company_name hacked>
+        - <keywords to search for in github>
+        - <you can have multiple keywords>
+
+    shodan_token: <shodan API token>
+
+    twitter_access_token: <twitter access token>
+    twitter_access_token_secret: <twitter access token secret>
+    twitter_consumer_key: <twitter consumer key>
+    twitter_consumer_secret: <twitter consumer secret>
+    
+    twitter_keywords:
+        - <keywords to search in twitter>
+        - <eg: company_name hacked>
