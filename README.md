@@ -159,6 +159,7 @@ Anirudh Anand ([@a0xnirudh](https://twitter.com/a0xnirudh))
 
 ##### Project Contributors:
 
+Himanshu Kumar Das ([@mehimansu](https://twitter.com/mehimansu))
 Mohan KK ([@MohanKallepalli](https://twitter.com/MohanKallepalli))  
 Ankur Bhargava ([@_AnkurB](https://twitter.com/_AnkurB))  
 Prajal Kulkarni ([@prajalkulkarni](https://twitter.com/prajalkulkarni))
