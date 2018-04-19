@@ -1,9 +1,9 @@
 # Red Team Arsenal
 
-Red Team Arsenal (RTA) is closely linked collections of security engines to conduct/simulate attacks and monitor public facing assets for anomalies and leaks. 
+Red Team Arsenal is a web/network security scanner which has the capability to scan all company's online facing assets and provide an  holistic security view of any security anomalies. It's a closely linked collections of security engines to conduct/simulate attacks and monitor public facing assets for anomalies and leaks.
 
-As companies continue to expand their footprint on internet via various acquisitions and geographical expansions, human driven security engineering is not scalable, hence, companies need feedback driven automated systems to stay put.
-
+It's an intelligent scanner detecting security anomalies in all layer 7 assets and gives a detailed report with integration support with nessus.
+As companies continue to expand their footprint on INTERNET via various acquisitions and geographical expansions, human driven security engineering is not scalable, hence, companies need feedback driven automated systems to stay put.
 
 ## Installation
 
