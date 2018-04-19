@@ -1,8 +1,17 @@
 # Red Team Arsenal
 
-Red Team Arsenal is a web/network security scanner which has the capability to scan all company's online facing assets and provide an  holistic security view of any security anomalies. It's a closely linked collections of security engines to conduct/simulate attacks and monitor public facing assets for anomalies and leaks.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/flipkart-incubator/RTA/master/rta.svg?sanitize=true" alt="Red Team Arsenal"/>
+</p>
 
-It's an intelligent scanner detecting security anomalies in all layer 7 assets and gives a detailed report with integration support with nessus.
+[![Github Release Version](https://img.shields.io/badge/release-V1.0-green.svg)](https://github.com/flipkart-incubator/RTA)
+[![Github Release Version](https://img.shields.io/badge/python-2.7-green.svg)](https://github.com/flipkart-incubator/RTA)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/flipkart-incubator/RTA/blob/master/LICENSE)
+[![RTA loves Open source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/flipkart-incubator/RTA)
+
+**Red Team Arsenal** is a web/network security scanner which has the capability to scan all company's online facing assets and provide an **holistic security** view of any security anomalies. It's a closely linked collections of security engines to conduct/simulate attacks and monitor public facing assets for anomalies and leaks.
+
+It's an intelligent scanner detecting security anomalies in all layer 7 assets and gives a detailed report with integration support with **nessus**.
 As companies continue to expand their footprint on INTERNET via various acquisitions and geographical expansions, human driven security engineering is not scalable, hence, companies need feedback driven automated systems to stay put.
 
 ## Installation
