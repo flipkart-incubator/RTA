@@ -166,4 +166,4 @@ Himanshu Kumar Das ([@mehimansu](https://twitter.com/mehimansu))
 
 ## Special Thanks
 
-[Sublist3r](https://raw.githubusercontent.com/aboul3la/Sublist3r)
+[Sublist3r](https://github.com/aboul3la/Sublist3r)
