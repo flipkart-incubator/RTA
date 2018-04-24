@@ -33,7 +33,7 @@ Finally run ``python install/install.py``
 
 There are also optional packages/tools you can install (highly recommended):
 
-### Integrating Nessus:
+### Integrating Nessus <OPTIONAL>:
 
 Integrating Nessus into Red Team Arsenal can be done is simple 3 steps:
 
