@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import os
 import sys
 import json
@@ -8,11 +10,9 @@ from flask import abort
 from flask import Flask
 from flask import request
 from flask import jsonify
-from flask import Response
 from flask import make_response
 from flask import send_from_directory
 
-from functools import wraps
 from pymongo import MongoClient
 
 sys.path.append('..')
@@ -45,7 +45,7 @@ def auth_check():
     uuid = config["api"]["token"]
     try:
         user_uuid = request.headers.get('X-RTA-UUID')
-    except:
+    except Exception:
         abort(401)
 
     if user_uuid != uuid:
@@ -84,7 +84,7 @@ def subdomains():
 @app.route('/api/subdomains/<parent>/', methods=['GET'])
 def parent_subdomains(parent):
     auth_check()
-    print parent
+    print(parent)
     results = dbname.subdomains.find({ 'parent': parent })
     sub_domains = []
     for result in results:
@@ -154,7 +154,7 @@ def exposed_files_parent(parent):
         data = {}
         data['id'] = result['id']
         data['exposedfiles'] = result['exposed_files']
-        
+
     sub_domains.append(data)
 
     return jsonify(sub_domains)
@@ -193,7 +193,7 @@ def nessus_report(format):
     # Part 2: Initiate report download
     params = {"format": format, "chapters": "vuln_hosts_summary"}
     url = nessus.nessus_url + "/scans/" + str(scan_id) + "/export"
-    
+
     req = requests.post(url, headers=headers, data=json.dumps(params), verify=False)
     response = json.loads(req.text)
     export_file_id = response["file"]
@@ -207,12 +207,12 @@ def nessus_report(format):
         if response["status"] == "ready":
             break
 
-    
+
     # Part 3: Downloading the CSV report if status is ready:
     url = nessus.nessus_url + "/scans/" + str(scan_id) + "/export/" + str(export_file_id) + "/download"
     filename = "downloads/nessus_report.pdf"
     req = requests.get(url, headers=headers, verify=False, stream=True)
-    
+
     # Writing the output to a file
     with open(filename, 'wb') as fd:
         for chunk in req.iter_content(chunk_size=2000):
@@ -221,9 +221,7 @@ def nessus_report(format):
     fd.close()
 
     return send_from_directory('downloads', 'nessus_report.pdf', as_attachment=True)
-    
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8082, debug=False);
-
+    app.run(host='127.0.0.1', port=8082, debug=False)
