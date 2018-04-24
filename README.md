@@ -1,4 +1,4 @@
-# Red Team Arsenal
+# Red Team Arsenal &nbsp; [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Red%20Team%20Arsenal%20(RTA)%20-%20An%20intelligent%20scanner%20to%20detect%20security%20vulnerabilities%20in%20company%27s%20layer%207%20assets&url=https://github.com/flipkart-incubator/RTA&via=a0xnirudh&hashtags=security,infosec,bugbounty)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/flipkart-incubator/RTA/master/rta.svg?sanitize=true" alt="Red Team Arsenal"/>
