@@ -12,7 +12,7 @@ scraper:
         - <company_name hacked>
         - 'org:company_name "BEGIN RSA PRIVATE KEY"'
         - '%22company_name.com /.ssh/id_rsa"'
-        - %22company_name.com%22 "@password"
+        - '%22company_name.com%22 "@password"'
         - '%22company_name.com%20ssh%22'
         - '%22company_name.com%20VPN%22'
 
