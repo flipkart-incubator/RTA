@@ -10,8 +10,11 @@ scraper:
     github_token: <github token>
     github_keywords: 
         - <company_name hacked>
-        - <keywords to search for in github>
-        - <you can have multiple keywords>
+        - 'org:company_name "BEGIN RSA PRIVATE KEY"'
+        - '%22company_name.com /.ssh/id_rsa"'
+        - %22company_name.com%22 "@password"
+        - '%22company_name.com%20ssh%22'
+        - '%22company_name.com%20VPN%22'
 
     shodan_token: <shodan API token>
 
