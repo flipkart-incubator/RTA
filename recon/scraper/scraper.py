@@ -72,7 +72,7 @@ class Scraper():
         2) search in commits
 
         """
-        self.message += "*Github*\n```"
+        message = self.G + "[+] Github\n\n" + self.W
         headers = {"Accept": "application/vnd.github.cloak-preview"}
 
         # Mongodb setup
@@ -97,12 +97,14 @@ class Scraper():
                             count += 1
 
                             # Slack push notifications
-                            self.message += "url: " + data['url'] + " (Searched String: " + search_string + ")\n"
+                            message += "Searched String: " + search_string + "\n"
+                            message += "url: " + data['url'] + "\n\n"
+                            # self.message += "url: " + data['url'] + " (Searched String: " + search_string + ")\n"
                         except Exception as e: 
                             pass
                 break
             break
-        self.message += "```"
+        print(self.W + message)
         
         return
 
@@ -199,7 +201,7 @@ class Scraper():
         Get all possible results for all the defined websites.
 
         """
-        # self.github()
+        self.github()
         try:
             self.shodan(target)
         except Exception as e:
@@ -210,7 +212,7 @@ class Scraper():
         try:
             self.twitter()
         except Exception as e:
-            # print("Exception occured: \n" + str(e))
+            print("Exception occured: \n" + str(e))
             print("\033[91m" + "[+]Skipping Twitter since config file is not updated")
             pass
 
