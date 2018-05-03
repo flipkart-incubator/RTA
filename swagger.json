@@ -488,7 +488,7 @@
       }
     }
   },
-  "host" : "104.211.241.169:8081",
+  "host" : "",
   "basePath" : "/",
   "schemes" : [ "http", "https" ]
 }
