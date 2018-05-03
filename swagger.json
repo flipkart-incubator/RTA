@@ -1,0 +1,494 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Welcome to Red Team Arsenal (RTA). Red Team Arsenal is closely linked collections of security engines to conduct/simulate attacks, monitor public facing assets for anomalies and leaks.. For this sample, you can use the api key `X-RTA-UUID` to test the authorization     filters..\n",
+    "version" : "1.0.1",
+    "title" : "Red Team Arsenal",
+    "contact" : {
+      "email" : "anirudh.anand@flipkart.coom"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "Welcome",
+    "description" : "RTA",
+    "externalDocs" : {
+      "description" : "Read more on RTA",
+      "url" : "https://goo.gl/PLdXJ2"
+    }
+  }, {
+    "name" : "Subdomains",
+    "description" : "Subdomain details",
+    "externalDocs" : {
+      "description" : "Read more on RTA",
+      "url" : "https://goo.gl/PLdXJ2"
+    }
+  }, {
+    "name" : "Exposed Files",
+    "description" : "Exposed Files",
+    "externalDocs" : {
+      "description" : "Read more on RTA",
+      "url" : "https://goo.gl/PLdXJ2"
+    }
+  }, {
+    "name" : "Scraper",
+    "description" : "Scraper results",
+    "externalDocs" : {
+      "description" : "Read more on RTA",
+      "url" : "https://goo.gl/PLdXJ2"
+    }
+  }, {
+    "name" : "Nessus",
+    "description" : "Nessus results",
+    "externalDocs" : {
+      "description" : "Read more on RTA",
+      "url" : "https://goo.gl/PLdXJ2"
+    }
+  } ],
+  "security" : [ {
+    "APIKeyAuth" : [ ]
+  } ],
+  "paths" : {
+    "/api/" : {
+      "get" : {
+        "tags" : [ "Welcome" ],
+        "summary" : "Welcome to Red Team Arsenal API",
+        "description" : "Check the connection to the RTA API.",
+        "operationId" : "api",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Welcome"
+              }
+            },
+            "headers" : {
+              "X-RTA-UUID" : {
+                "type" : "string",
+                "description" : "RTA Authorization token"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/subdomains/" : {
+      "get" : {
+        "tags" : [ "Subdomains" ],
+        "summary" : "List all subdomains",
+        "description" : "Get the list of entire subdomains saved by RTA",
+        "operationId" : "subdomains",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Subdomains"
+              }
+            },
+            "headers" : {
+              "X-RTA-UUID" : {
+                "type" : "string",
+                "description" : "RTA Authorization token"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/subdomains/{parent}/" : {
+      "get" : {
+        "tags" : [ "Subdomains" ],
+        "summary" : "List all subdomains of a parent",
+        "description" : "Returns list of all subdomains of a parent domain",
+        "operationId" : "subdomain/parent",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "parent",
+          "in" : "path",
+          "description" : "Parent domain name",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful",
+            "schema" : {
+              "$ref" : "#/definitions/Subdomains"
+            },
+            "headers" : {
+              "X-RTA-UUID" : {
+                "type" : "string",
+                "description" : "RTA Authorization token"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/subdomains/{parent}/verified/" : {
+      "get" : {
+        "tags" : [ "Subdomains" ],
+        "summary" : "Verified subdomains",
+        "description" : "Returns list of all verified subdomains (with webservers) of a parent domain",
+        "operationId" : "subdomain/parent/verified",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "parent",
+          "in" : "path",
+          "description" : "Parent domain name",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful",
+            "schema" : {
+              "$ref" : "#/definitions/Subdomains"
+            },
+            "headers" : {
+              "X-RTA-UUID" : {
+                "type" : "string",
+                "description" : "RTA Authorization token"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/subdomains/techstack/{domain}/" : {
+      "get" : {
+        "tags" : [ "Subdomains" ],
+        "summary" : "Subdomain tech stack",
+        "description" : "Returns the techstack of the given domain",
+        "operationId" : "subdomain/techstack/domain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domain",
+          "in" : "path",
+          "description" : "Domain name",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful",
+            "schema" : {
+              "$ref" : "#/definitions/Techstack"
+            },
+            "headers" : {
+              "X-RTA-UUID" : {
+                "type" : "string",
+                "description" : "RTA Authorization token"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/exposedfiles/{domain}/" : {
+      "get" : {
+        "tags" : [ "Exposed Files" ],
+        "summary" : "Exposed files on a domain",
+        "description" : "Returns a list of exposed files on the given domain",
+        "operationId" : "exposedfiles/domain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domain",
+          "in" : "path",
+          "description" : "domain name",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful",
+            "schema" : {
+              "$ref" : "#/definitions/ExposedFiles"
+            },
+            "headers" : {
+              "X-RTA-UUID" : {
+                "type" : "string",
+                "description" : "RTA Authorization token"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/exposedfiles/{parent}/all/" : {
+      "get" : {
+        "tags" : [ "Exposed Files" ],
+        "summary" : "Exposed files on a domain",
+        "description" : "Returns a list of all exposed files on the parent domain (including its subdomains)",
+        "operationId" : "exposedfiles/parent/all",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "parent",
+          "in" : "path",
+          "description" : "Parent domain name",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful",
+            "schema" : {
+              "$ref" : "#/definitions/ExposedFiles"
+            },
+            "headers" : {
+              "X-RTA-UUID" : {
+                "type" : "string",
+                "description" : "RTA Authorization token"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/scraper/search/{query}/" : {
+      "get" : {
+        "tags" : [ "Scraper" ],
+        "summary" : "Get the results based on the query",
+        "description" : "Returns the list of all sources from which the `query` is scraped.",
+        "operationId" : "scraper/search/query",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "query",
+          "in" : "path",
+          "description" : "String used to scrape results",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful",
+            "schema" : {
+              "$ref" : "#/definitions/QuerySearch"
+            },
+            "headers" : {
+              "X-RTA-UUID" : {
+                "type" : "string",
+                "description" : "RTA Authorization token"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/scraper/{source}/" : {
+      "get" : {
+        "tags" : [ "Scraper" ],
+        "summary" : "Get the results based on the source",
+        "description" : "Returns the list of data gathered from the source given.",
+        "operationId" : "scraper/source",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "source",
+          "in" : "path",
+          "description" : "Source name to see all the data gathered from it",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful",
+            "schema" : {
+              "$ref" : "#/definitions/SourceSearch"
+            },
+            "headers" : {
+              "X-RTA-UUID" : {
+                "type" : "string",
+                "description" : "RTA Authorization token"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/nessus/report/{format}" : {
+      "get" : {
+        "tags" : [ "Nessus" ],
+        "summary" : "Get the latest Nessus report",
+        "description" : "Returns the latest Nessus report on HTML/PDF/CSV formats",
+        "operationId" : "nessus/report",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "format",
+          "in" : "path",
+          "description" : "Format in which report should be exported (HTML/PDF/CSV)",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful",
+            "headers" : {
+              "X-RTA-UUID" : {
+                "type" : "string",
+                "description" : "RTA Authorization token"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "APIKeyAuth" : {
+      "type" : "apiKey",
+      "name" : "X-RTA-UUID",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "Welcome" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "enum" : [ "Welcome to Red Team Arsenal API!" ]
+        }
+      }
+    },
+    "Subdomains" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "parent" : {
+          "type" : "string",
+          "enum" : [ "flipkart.com" ]
+        },
+        "domain" : {
+          "type" : "string",
+          "enum" : [ "ads.flipkart.com" ]
+        }
+      }
+    },
+    "Techstack" : {
+      "type" : "array",
+      "items" : {
+        "properties" : {
+          "domain" : {
+            "type" : "string",
+            "enum" : [ "ads.flipkart.com" ]
+          },
+          "techstack" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "enum" : [ "Wordpress", "Nginx" ]
+            }
+          }
+        }
+      }
+    },
+    "ExposedFiles" : {
+      "type" : "array",
+      "items" : {
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "exposedfiles" : {
+            "type" : "array",
+            "items" : {
+              "properties" : {
+                "content_length" : {
+                  "type" : "integer",
+                  "format" : "int64"
+                },
+                "status_code" : {
+                  "type" : "integer",
+                  "format" : "int64",
+                  "enum" : [ 200, 301, 302 ]
+                },
+                "url" : {
+                  "type" : "string",
+                  "enum" : [ "http://ads.flipkart.com/.git/" ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "QuerySearch" : {
+      "properties" : {
+        "query" : {
+          "type" : "string",
+          "enum" : [ ".nm.flipkart.com", "phonepe" ]
+        },
+        "results" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "http://github.com/path/to/searched/string" ]
+          }
+        }
+      }
+    },
+    "SourceSearch" : {
+      "type" : "array",
+      "items" : {
+        "properties" : {
+          "searched_for" : {
+            "type" : "string",
+            "enum" : [ ".nm.flipkart.com", "phonepe" ]
+          },
+          "searched_result" : {
+            "type" : "string",
+            "enum" : [ "https://twitter.com/statuses/9308271925" ]
+          }
+        }
+      }
+    }
+  },
+  "host" : "104.211.241.169:8081",
+  "basePath" : "/",
+  "schemes" : [ "http", "https" ]
+}
