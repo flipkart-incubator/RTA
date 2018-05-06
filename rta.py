@@ -86,10 +86,9 @@ class Recon(object):
 
         self.subdomains  -> List of all subdomains returned by sublist3r
         """
-        # self.subdomains |= set(sublist3r.main(target, 5, savefile=None,
-        #                                       ports=None, silent=silent, verbose=False,
-        #                                       enable_bruteforce=False, engines=None))
-        self.subdomains = set(['brands.flipkart.com'])
+        self.subdomains |= set(sublist3r.main(target, 5, savefile=None,
+                                              ports=None, silent=silent, verbose=False,
+                                              enable_bruteforce=False, engines=None))
 
         # Enter the subdomains to MongoDB
         collection = self.dbname['subdomains']
@@ -314,7 +313,7 @@ class Scan():
         collection = self.dbname['wpscan']
         collection_tech = self.dbname['tech_stack']
         count = self.dbname.collection.count()
-        collection.create_index('domain', unique=True)
+        # collection.create_index('domain', unique=True)
         
         flag = True
 
