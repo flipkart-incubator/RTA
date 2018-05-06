@@ -1,5 +1,6 @@
 import os
 import sys
+import subprocess
 
 
 class Install():
@@ -31,6 +32,14 @@ class Install():
         except Exception as e:
             print("Sublister installation failed. Please download Sublist3r into recon directory")
 
+    def wpscan(self):
+        try:
+            print("[+] Installing WpScan\n")
+            subprocess.check_call("gem install wpscan", shell=True)
+        except Exception as e:
+            print(e)
+            print("\033[92m" + "wpscan installation failed.")
+            print("\033[92m" + "Install ruby, gem and then run: " + "\033[92m" + "gem install wpscan")
 
 def main():
     install = Install()
@@ -39,7 +48,8 @@ def main():
         install.os_dependencies_linux()
     
     install.sublister()
-    print("\033[91m" + "\n\nPlease modify the config file with the required values before running RTA !")
+    install.wpscan()
+    print("\033[92m" + "\nPlease modify the config file with the required values before running RTA !")
 
     return
 

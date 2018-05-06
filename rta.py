@@ -16,6 +16,7 @@ from recon.custom import subtakeover
 from recon.custom import zonetransfer
 
 from scanning.nessus import Nessus
+from scanning.wpscan import WpScan
 
 from recon.scraper import scraper
 
@@ -85,10 +86,10 @@ class Recon(object):
 
         self.subdomains  -> List of all subdomains returned by sublist3r
         """
-        self.subdomains |= set(sublist3r.main(target, 5, savefile=None,
-                                              ports=None, silent=silent, verbose=False,
-                                              enable_bruteforce=False, engines=None))
-        
+        # self.subdomains |= set(sublist3r.main(target, 5, savefile=None,
+        #                                       ports=None, silent=silent, verbose=False,
+        #                                       enable_bruteforce=False, engines=None))
+        self.subdomains = set(['brands.flipkart.com'])
 
         # Enter the subdomains to MongoDB
         collection = self.dbname['subdomains']
@@ -120,6 +121,8 @@ class Recon(object):
             if len(diff) > 30 and len(diff) % 30 != 0:
                 self.message += "```"
 
+            if len(diff) < 30:
+                self.message += "```" 
             self.slack.notify_slack(self.message)
 
         for domain in self.subdomains:
@@ -190,8 +193,8 @@ class Recon(object):
                 length = 30 - length
                 self.message += url + " --> ".rjust(length) + cname + "\n"
         
-        self.message += "```\n"
-        self.slack.notify_slack(self.message)
+            self.message += "```\n"
+            self.slack.notify_slack(self.message)
         return
 
 
@@ -262,14 +265,24 @@ class Scan():
     """ This class will take care of the Active/Passive scanning """
 
     def __init__(self):
-        self.nessus = Nessus()
-        
         # colors
         self.G = '\033[92m'  # green
         self.Y = '\033[93m'  # yellow
         self.B = '\033[94m'  # blue
         self.R = '\033[91m'  # red
         self.W = '\033[0m'   # white
+
+        # object initialization
+        self.nessus = Nessus()
+        self.wpscan = WpScan()
+
+        # MongoDB variables
+        self.mongocli = MongoClient('localhost', 27017)
+        self.dbname = self.mongocli['RTA']
+
+        # Slack notification
+        self.slack = Slack()
+        
 
     def nessus_scan(self, target, filename):
         """ This function will take care of nessus scans and getting its output"""
@@ -293,6 +306,61 @@ class Scan():
         print(self.G + "[+] Nessus consolidated report:")
         self.nessus.slack_notify()
         return
+
+    def wp_scan(self, parent):
+        """
+        Launch WpScan if the techstack used is wordpress.
+        """
+        collection = self.dbname['wpscan']
+        collection_tech = self.dbname['tech_stack']
+        count = self.dbname.collection.count()
+        collection.create_index('domain', unique=True)
+        
+        flag = True
+
+        for item in collection_tech.find({'parent': parent}):
+            message = ""
+            if 'wordpress' in str(item['tech_stack']).lower():
+                
+                if flag:
+                    message = "[+] *Wpscan report*: (" + item['domain'] + ")\n"
+                    flag = False
+
+                result = self.wpscan.scan(item['domain'], parent)
+                data = {'id': count+1, 'domain': item['domain'], 'time': datetime.now()}
+                data['version'] = result['version']['number']
+                message += "Version: `" + data['version'] + "`\n"
+                
+                data['vulnerabilities'] = []
+                data['plugins'] = {}
+
+                message += "Wordpress core vulnerabilities: \n```\n"
+                for value in result['version']['vulnerabilities']:
+                    data['vulnerabilities'].append(value['title'])
+                    message += value['title'] + "\n"
+                message += "```\nPlugins: \n"
+
+                for key, value in result['plugins'].iteritems():
+                    if message[-1] != "\n":
+                        message += "```"
+                    message += "\n" + key + ": \n```"
+
+                    for vuln in value['vulnerabilities']:
+                        message += "\n"
+                        try:
+                            data['plugins'][key].append(vuln['title'])
+                        except:
+                            data['plugins'][key] = []
+                            data['plugins'][key].append(vuln['title'])
+                        message += vuln['title']
+
+
+            # Push the above data to DB
+            message += "\n```"
+            print(self.W + message)
+            self.slack.notify_slack(message)
+            dataid = collection.insert(data)
+            count += 1
 
 
 def main():
@@ -333,6 +401,7 @@ def main():
 
         recon.verify(args.url)
         recon.wappalyzer(args.url, args.verbose)
+        scan.wp_scan(args.url)
         
         if args.scraper:
             recon.scrape(args.url)
