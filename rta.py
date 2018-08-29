@@ -400,7 +400,7 @@ def main():
 
         recon.verify(args.url)
         recon.wappalyzer(args.url, args.verbose)
-        scan.wp_scan(args.url)
+        # scan.wp_scan(args.url)
         
         if args.scraper:
             recon.scrape(args.url)

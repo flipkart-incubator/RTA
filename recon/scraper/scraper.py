@@ -72,8 +72,10 @@ class Scraper():
         2) search in commits
 
         """
-        message = self.G + "[+] Github\n\n" + self.W
+        print(self.G + "[+] Github" + self.W)
+        message = "\n*Github*:\n"
         headers = {"Accept": "application/vnd.github.cloak-preview"}
+        slack_flag = 0
 
         # Mongodb setup
         count = self.collection.count()
@@ -87,6 +89,9 @@ class Scraper():
                 req = requests.get(url, headers=headers, params=payload)
                 
                 if req.status_code == 200:
+                    message = ""
+                    message += "Searched String: " + search_string + "\n```\n"
+                    slack_flag = flag =0
                     results = json.loads(req.text)
                     for item in results['items']:
                         try:
@@ -95,17 +100,28 @@ class Scraper():
                             data['timestamp'] = datetime.now()
                             dataid = self.collection.insert(data)
                             count += 1
+                            flag += 1
 
                             # Slack push notifications
-                            message += "Searched String: " + search_string + "\n"
-                            message += "url: " + data['url'] + "\n\n"
+                            message += data['url'] + "\n"
+                            slack_flag += 1
+                            if slack_flag > 9 and len(results['items']) - flag != 0:
+                                message += "```\n"
+
+                                if len(results['items']) - flag > 18:
+                                    self.slack.notify_slack(message)
+                                    message = ""
+
+                                message += "```\n"
+                                slack_flag = 0
                             # self.message += "url: " + data['url'] + " (Searched String: " + search_string + ")\n"
                         except Exception as e: 
+                            #message += "```\n"
                             pass
-                break
+                    message += "```\n"
+                    print(message)
+                    self.slack.notify_slack(message)
             break
-        print(self.W + message)
-        
         return
 
 
@@ -188,10 +204,10 @@ class Scraper():
                     pass
         
         if message:
-            print(self.G + "[+] Twitter" + self.B + message)
+            print(self.G + "[+] Twitter" + self.B + message + self.W + "\n")
             self.message += "\n*Twitter*:\n```"
             self.message += message
-            self.message += "\n```"
+            self.message += "\n```\n*Github*:\n"
 
         return
 
@@ -201,7 +217,6 @@ class Scraper():
         Get all possible results for all the defined websites.
 
         """
-        self.github()
         try:
             self.shodan(target)
         except Exception as e:
@@ -217,4 +232,6 @@ class Scraper():
             pass
 
         self.slack.notify_slack(self.message)
+        self.github()
+
         return
