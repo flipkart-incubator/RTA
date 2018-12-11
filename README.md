@@ -7,6 +7,7 @@
 [![Github Release Version](https://img.shields.io/badge/release-V1.0-green.svg)](https://github.com/flipkart-incubator/RTA)
 [![Github Release Version](https://img.shields.io/badge/python-2.7-green.svg)](https://github.com/flipkart-incubator/RTA)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/flipkart-incubator/RTA/blob/master/LICENSE)
+[![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_flat.svg)](http://inventory.rawsec.ml/tools.html#Red%20Team%20Arsenal)
 [![RTA loves Open source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/flipkart-incubator/RTA)
 
 **Red Team Arsenal** is a web/network security scanner which has the capability to scan all company's online facing assets and provide an **holistic security** view of any security anomalies. It's a closely linked collections of security engines to conduct/simulate attacks and monitor public facing assets for anomalies and leaks.
