@@ -68,4 +68,25 @@ You can receive notifications in  Google Chat, this can be configured by adding 
 - Abhishek S ([@abhiabhi2306](https://twitter.com/abhiabhi2306))
 
 
+## References
 
+Thanks to the authors of the below creations.
+
+- Amass: https://github.com/owasp-amass/amass
+- Aquatone: https://github.com/michenriksen/aquatone
+- Assetfinder: https://github.com/tomnomnom/assetfinder
+- Chaos-Client: https://github.com/projectdiscovery/chaos-client
+- Chrome Driver: https://chromedriver.chromium.org/downloads
+- Ffuf: https://github.com/ffuf/ffuf
+- Finddomain: https://github.com/Findomain/Findomain
+- Gau: https://github.com/lc/gau
+- Https: https://github.com/projectdiscovery/httpx
+- Naabu: https://github.com/projectdiscovery/naabu
+- Nmap: https://nmap.org/
+- Subfinder: https://github.com/projectdiscovery/subfinder
+- Scweet: https://pypi.org/project/Scweet/
+- Cloud Enum: https://github.com/initstring/cloud_enum
+- DNStwist: https://github.com/elceef/dnstwist
+- Phonebook: https://phonebook.cz/
+- SSLyze: https://github.com/nabla-c0d3/sslyze
+- Shodan: https://shodan.io
