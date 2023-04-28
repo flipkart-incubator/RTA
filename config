@@ -1,28 +1,5 @@
-slack:
-    url: <Slack incoming webhook url>
+googlechat:
+    url: REDACTED
 
-nessus:
-    url: https://127.0.0.1:8080   #Remote Nessus instance can be used
-    username: <nessus username>
-    password: <nessus password>
-
-scraper:
-    github_token: <github token>
-    github_keywords: 
-        - <company_name hacked>
-        - 'org:company_name "BEGIN RSA PRIVATE KEY"'
-        - '%22company_name.com /.ssh/id_rsa"'
-        - '%22company_name.com%22 "@password"'
-        - '%22company_name.com%20ssh%22'
-        - '%22company_name.com%20VPN%22'
-
-    shodan_token: <shodan API token>
-
-    twitter_access_token: <twitter access token>
-    twitter_access_token_secret: <twitter access token secret>
-    twitter_consumer_key: <twitter consumer key>
-    twitter_consumer_secret: <twitter consumer secret>
-    
-    twitter_keywords:
-        - <keywords to search in twitter>
-        - <eg: company_name hacked>
+github:
+    github_token: REDACTED

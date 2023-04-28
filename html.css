@@ -1,0 +1,47 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    height: 75%;
+  }
+  
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+h1 {
+    font-size: 3rem;
+    color: brown;
+    text-align: center;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border: 2px solid black;
+    
+}
+
+caption {
+    font-style: italic;
+    padding: 5px;
+}
+
+tr,
+td {
+    border: 2px solid black;
+    padding: 5px;
+}
+
+th {
+    text-align: left;
+}
+
+thead tr td span {
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
