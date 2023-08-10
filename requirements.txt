@@ -34,7 +34,7 @@ distlib==0.3.4
 dnspython==2.2.1
 elastic-transport==8.1.2
 elasticsearch==5.5.3
-fake-useragent==0.1.11
+fake-useragent==1.2.1
 fastapi==0.78.0
 filelock==3.7.1
 flake8==4.0.1
